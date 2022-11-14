@@ -34,7 +34,7 @@ function showMealList() {
                     <div class="card-body">
                         <h5 class="card-title">${element.strMeal}</h5>
                         <div class="d-flex justify-content-between mt-5">
-                            <button type="button" class="btn btn-outline-light" onclick="showMealDetails(${element.idMeal})">More Details</button>
+                            <button type="button" class="btn btn-outline-light" onclick="showMealDetails(${element.idMeal})">Get Recipe</button>
                             <button id="main${element.idMeal}" class="btn btn-outline-light active" onclick="addRemoveToFavList(${element.idMeal})" style="border-radius:50%"><i class="fa-solid fa-heart"></i></button>
                         </div>
                     </div>
@@ -47,7 +47,7 @@ function showMealList() {
                     <div class="card-body">
                         <h5 class="card-title">${element.strMeal}</h5>
                         <div class="d-flex justify-content-between mt-5">
-                            <button type="button" class="btn btn-outline-light" onclick="showMealDetails(${element.idMeal})">More Details</button>
+                            <button type="button" class="btn btn-outline-light" onclick="showMealDetails(${element.idMeal})">Get Recipe</button>
                             <button id="main${element.idMeal}" class="btn btn-outline-light" onclick="addRemoveToFavList(${element.idMeal})" style="border-radius:50%"><i class="fa-solid fa-heart"></i></button>
                         </div>
                     </div>
@@ -81,6 +81,7 @@ async function showMealDetails(id) {
   let html = "";
   await fetchMealsFromApi(url, id).then((data) => {
     html += `
+          <button id="close-btn">X</button>
           <div id="meal-details" class="mb-5">
             <div id="meal-header" class="d-flex justify-content-around flex-wrap">
               <div id="meal-thumbail">
@@ -103,9 +104,18 @@ async function showMealDetails(id) {
         `;
   });
   document.getElementById("main").innerHTML = html;
+
+  // This is Close Button of Recepie instruction
+  let closeBtn = document.getElementById("close-btn");
+
+  closeBtn.addEventListener("click", function () {
+    // console.log("Close button");
+    document.getElementById("main").innerHTML = "";
+  });
 }
 
 // its shows all favourites meals in favourites body
+
 async function showFavMealList() {
   let arr = JSON.parse(localStorage.getItem("favouritesList"));
   let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
@@ -135,7 +145,7 @@ async function showFavMealList() {
                         <h5 class="card-title">${data.meals[0].strMeal}</h5>
                         
                         <div class="d-flex justify-content-between mt-5">
-                            <button type="button" class="btn btn-outline-light" onclick="showMealDetails(${data.meals[0].idMeal})">More Details</button>
+                            <button type="button" class="btn btn-outline-light" onclick="showMealDetails(${data.meals[0].idMeal})">Get Recipe</button>
                             <button id="main${data.meals[0].idMeal}" class="btn btn-outline-light active" onclick="addRemoveToFavList(${data.meals[0].idMeal})" style="border-radius:50%"><i class="fa-solid fa-heart"></i></button>
                         </div>
                     </div>
@@ -162,7 +172,7 @@ function addRemoveToFavList(id) {
     alert("your meal removed from your favourites list");
   } else {
     arr.push(id);
-    alert("your meal add your favourites list");
+    alert("Added to favourites list");
   }
   localStorage.setItem("favouritesList", JSON.stringify(arr));
   showMealList();

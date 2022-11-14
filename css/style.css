@@ -9,7 +9,7 @@
 
 body {
   width: 100%;
-  background-color: #383838;
+  background-color: #3f3e3e;
   color: white;
 }
 
@@ -25,6 +25,18 @@ body {
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
+#meal-logo {
+  height: 45px;
+  width: 45px;
+  top: -5px;
+  position: relative;
+  margin-left: 10px;
+}
+
+#fav-btn {
+  color: black;
+  background-color: yellow;
+}
 /* header search bar section */
 #search-bar {
   max-width: 600px;
@@ -51,7 +63,7 @@ body {
 
 /* meal card */
 #card {
-  background-color: #00ccff;
+  background-color: #00ffd9;
   padding: 10px;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -60,7 +72,6 @@ body {
 #card img {
   border-radius: 50%;
 }
-
 /* meal details container */
 #meal-details {
   width: 100%;
@@ -77,6 +88,16 @@ body {
   height: 250px;
   width: 250px;
   border-radius: 50%;
+}
+#close-btn {
+  width: 25px;
+  border-radius: 10px;
+  background-color: #000000;
+  color: white;
+}
+.my-get-recepe-btn {
+  background-color: black;
+  color: white;
 }
 #details {
   display: flex;
